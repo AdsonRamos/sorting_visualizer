@@ -80,8 +80,6 @@ class SortingAlgorithms {
       }
     }
 
-    // Print the sorted array
-    console.log(arr);
     return swaps
   }
 
@@ -101,7 +99,6 @@ class SortingAlgorithms {
       swaps.push({ firstPosition: min, lastPosition: i })
     }
 
-    console.log(array)
     return swaps
   }
 

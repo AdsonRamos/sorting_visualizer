@@ -1,9 +1,12 @@
 import { sleep } from './helpers/util.js'
 import { SortingAlgorithms } from './helpers/sortingAlgorithms.js'
 
-const stage = document.getElementById('stage')
+let nBars = 10
 
-const nBars = 20
+let numbersBars = document.getElementById('numbersBars')
+
+const stage = document.getElementById('stage')
+stage.style.width = `${nBars * 30}px`
 
 const selectAlgorithm = document.getElementById('selectAlgorithm')
 
@@ -32,7 +35,7 @@ const start = () => {
     const bar = document.createElement('div')
     bar.style.width = `${bars[i].width}px`
     bar.style.height = `${bars[i].height}px`
-    bar.style.left = `${i * 30}px`
+    bar.style.left = `${5 + i * 30}px`
     bars[i] = { ...bars[i], position: i }
     bar.classList.add('bar')
     barsDivs.push(bar)
@@ -43,9 +46,9 @@ const start = () => {
 start()
 
 async function swapBars(barsDivs, i, j) {
-  barsDivs[i].style.left = `${j * 30}px`
+  barsDivs[i].style.left = `${5 + j * 30}px`
   barsDivs[i].classList.add('activate')
-  barsDivs[j].style.left = `${i * 30}px`
+  barsDivs[j].style.left = `${5 + i * 30}px`
   barsDivs[j].classList.add('activate')
   await sleep(300)
   barsDivs[i].classList.remove('activate')
@@ -73,6 +76,8 @@ const solve = async () => {
 }
 
 generateBtn.addEventListener('click', () => {
+  nBars = parseInt(numbersBars.value, 10)
+  stage.style.width = `${nBars * 30}px`
   start()
 })
 
